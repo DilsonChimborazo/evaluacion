@@ -1,39 +1,30 @@
 import React, { useState } from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const CampoSelect = ({ setTotalManoObra }) => {
+const Insumos = ({ setTotalCostos }) => {
     const [actividad, setactividad] = useState('')
-    const [fecha, setfecha] = useState('')
-    const [tiempo, settiempo] = useState(0)
+    const [insumo, setinsumo] = useState('')
+    const [costo, setcosto] = useState(0)
     const [actividades, setactividades] = useState([])
     const [suma, setSuma] = useState(0)
 
     const recibirDatos = (e) => {
         e.preventDefault()
-        const dia = new Date(fecha).getUTCDate()
-        const nuevoti = parseInt(tiempo) || 0
-        const nuevotiempo = suma + nuevoti
-
-        const horas = tiempo / 60
-        const jornal = horas / 8.5
-        const manoobraactividad = jornal * 60000
-
-        const nuevaactividad = { actividad, dia, tiempo, manoobraactividad }
+        const nuevocosto = parseInt(costo) || 0
+        const nuevaactividad = { actividad, insumo, costo: nuevocosto }
 
         setactividades([...actividades, nuevaactividad])
-        setSuma(nuevotiempo)
-        setTotalManoObra(prevTotal => prevTotal + manoobraactividad) 
-        settiempo(0)
-        setfecha('')
+        setSuma(prevSuma => prevSuma + nuevocosto) // Actualiza el total
+        setTotalCostos(prevTotal => prevTotal + nuevocosto) // Actualiza el total de costos
+
+        setcosto(0)
+        setinsumo('')
         setactividad('')
 
         console.log('Actividad', actividad)
-        console.log(dia)
-        console.log(tiempo)
-        console.log('suma total:', nuevotiempo)
-        console.log('horas', horas)
-        console.log('jornal', jornal)
-        console.log('Mano de obra', manoobraactividad)
+        console.log(insumo)
+        console.log('Costo:', nuevocosto)
+        console.log('suma total:', suma + nuevocosto)
     }
 
     const formatomoneda = (value) => {
@@ -55,37 +46,34 @@ const CampoSelect = ({ setTotalManoObra }) => {
                         <option value="siembra y transplante">siembra y transplante</option>
                         <option value="fertilizacion">fertilizacion</option>
                     </select>
-                    <input type="date" className="form-control my-3" value={fecha} onChange={(e) => setfecha(e.target.value)} />
-                    <input type="number" className="form-control" value={tiempo} onChange={(e) => settiempo(e.target.value)} />
+                    <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setinsumo(e.target.value)} />
+                    <input type="number" className="form-control" value={costo} onChange={(e) => setcosto(e.target.value)} />
                 </label><br />
                 <button type="submit" className="btn btn-primary m-3">Enviar</button>
             </form>
             <div className="container">
-                <h2>Registro diario de campo</h2>
+                <h2>Egresos Insumos</h2>
                 <table className="table border">
                     <thead className="fs-bold fs-4 border">
                         <tr>
                             <td>Actividad</td>
-                            <td>Fecha</td>
-                            <td>Tiempo</td>
-                            <td>Mano de obra</td>
+                            <td>Insumos</td>
+                            <td>Costos</td>
                         </tr>
                     </thead>
                     <tbody>
                         {actividades.map((acti, index) => (
                             <tr key={index}>
                                 <td>{acti.actividad}</td>
-                                <td>{acti.dia}</td>
-                                <td>{acti.tiempo}</td>
-                                <td>{formatomoneda(acti.manoobraactividad)}</td>
+                                <td>{acti.insumo}</td>
+                                <td>{formatomoneda(acti.costo)}</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colSpan={2}>Total:</td>
-                            <td><strong>{suma}</strong></td>
-                            <td><strong>{formatomoneda(actividades.reduce((acc, acti) => acc + acti.manoobraactividad, 0))}</strong></td>
+                            <td><strong>{formatomoneda(suma)}</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -94,4 +82,4 @@ const CampoSelect = ({ setTotalManoObra }) => {
     )
 }
 
-export default CampoSelect
+export default Insumos
