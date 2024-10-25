@@ -1,31 +1,48 @@
-import React, { useState } from "react"
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Insumos = ({ setTotalCostos }) => {
-    const [actividad, setactividad] = useState('')
-    const [insumo, setinsumo] = useState('')
-    const [costo, setcosto] = useState(0)
-    const [actividades, setactividades] = useState([])
-    const [suma, setSuma] = useState(0)
+    const [actividad, setActividad] = useState('');
+    const [insumo, setInsumo] = useState('');
+    const [costo, setCosto] = useState(0);
+    const [actividades, setActividades] = useState([]);
+    const [suma, setSuma] = useState(0);
+
+    // Cargar datos desde localStorage al iniciar
+    useEffect(() => {
+        const actividadesGuardadas = JSON.parse(localStorage.getItem('actividades')) || [];
+        const sumaGuardada = JSON.parse(localStorage.getItem('sumaInsumos')) || 0;
+
+        setActividades(actividadesGuardadas);
+        setSuma(sumaGuardada);
+        setTotalCostos(prevTotal => prevTotal + sumaGuardada);
+    }, [setTotalCostos]);
+
+    // Guardar actividades y suma en localStorage cada vez que cambian
+    useEffect(() => {
+        localStorage.setItem('actividades', JSON.stringify(actividades));
+        localStorage.setItem('sumaInsumos', JSON.stringify(suma));
+    }, [actividades, suma]);
 
     const recibirDatos = (e) => {
-        e.preventDefault()
-        const nuevocosto = parseInt(costo) || 0
-        const nuevaactividad = { actividad, insumo, costo: nuevocosto }
+        e.preventDefault();
+        const nuevoCosto = parseInt(costo) || 0;
+        const nuevaActividad = { actividad, insumo, costo: nuevoCosto };
 
-        setactividades([...actividades, nuevaactividad])
-        setSuma(prevSuma => prevSuma + nuevocosto) // Actualiza el total
-        setTotalCostos(prevTotal => prevTotal + nuevocosto) // Actualiza el total de costos
+        setActividades([...actividades, nuevaActividad]);
+        setSuma(prevSuma => prevSuma + nuevoCosto);
+        setTotalCostos(prevTotal => prevTotal + nuevoCosto);
 
-        setcosto(0)
-        setinsumo('')
-        setactividad('')
+        // Limpiar campos después de guardar
+        setCosto(0);
+        setInsumo('');
+        setActividad('');
 
-        console.log('Actividad', actividad)
-        console.log(insumo)
-        console.log('Costo:', nuevocosto)
-        console.log('suma total:', suma + nuevocosto)
-    }
+        console.log('Actividad:', actividad);
+        console.log('Insumo:', insumo);
+        console.log('Costo:', nuevoCosto);
+        console.log('Suma total:', suma + nuevoCosto);
+    };
 
     const formatomoneda = (value) => {
         return new Intl.NumberFormat('es-CO', {
@@ -33,24 +50,24 @@ const Insumos = ({ setTotalCostos }) => {
             currency: 'COP',
             minimumFractionDigits: 0,
             maximumFractionDigits: 0
-        }).format(value)
-    }
+        }).format(value);
+    };
 
     return (
-        <div className="d-flex mt-5 bg-success text-white rounded-5">
+        <div className="d-flex mt-5 bg-info text-white rounded-5">
             <form onSubmit={recibirDatos} className="p-5">
-                <h3 className="text-center">Registro de Egresos insumos</h3>
+                <h3 className="text-center">Registro de Egresos Insumos</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
-                <select value={actividad} className="form-control" onChange={(e) => setactividad(e.target.value)}>
+                <select value={actividad} className="form-control" onChange={(e) => setActividad(e.target.value)}>
                     <option value=""></option>
-                    <option value="decuacion terreno">decuacion terreno</option>
-                    <option value="siembra y transplante">siembra y transplante</option>
-                    <option value="fertilizacion">fertilizacion</option>
+                    <option value="decuacion terreno">Deacuación Terreno</option>
+                    <option value="siembra y transplante">Siembra y Transplante</option>
+                    <option value="fertilizacion">Fertilización</option>
                 </select>
                 <label htmlFor="insumos"><b>Insumos:</b></label>
-                <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setinsumo(e.target.value)} />
+                <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setInsumo(e.target.value)} />
                 <label htmlFor="costo"><b>Costo:</b></label>
-                <input type="number" className="form-control" value={costo} onChange={(e) => setcosto(e.target.value)} />
+                <input type="number" className="form-control" value={costo} onChange={(e) => setCosto(e.target.value)} />
                 <button type="submit" className="btn btn-primary m-3">Enviar</button>
             </form>
             <div className="container p-3">
@@ -81,7 +98,7 @@ const Insumos = ({ setTotalCostos }) => {
                 </table>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Insumos
+export default Insumos;
