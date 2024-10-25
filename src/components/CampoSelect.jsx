@@ -46,24 +46,26 @@ const CampoSelect = ({ setTotalManoObra }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={recibirDatos}>
-                <label htmlFor="actividad"><b>Actividad:</b>
-                    <select value={actividad} className="form-control" onChange={(e) => setactividad(e.target.value)}>
-                        <option value=""></option>
-                        <option value="decuacion terreno">decuacion terreno</option>
-                        <option value="siembra y transplante">siembra y transplante</option>
-                        <option value="fertilizacion">fertilizacion</option>
-                    </select>
-                    <input type="date" className="form-control my-3" value={fecha} onChange={(e) => setfecha(e.target.value)} />
-                    <input type="number" className="form-control" value={tiempo} onChange={(e) => settiempo(e.target.value)} />
-                </label><br />
+        <div className="d-flex bg-success text-white rounded-5">
+            <form onSubmit={recibirDatos} className="shadow-lg p-5">
+                <h3 className="text-center">Registro de mano de obra</h3>
+                <label htmlFor="actividad"><b>Actividad:</b></label>
+                <select value={actividad} id="actividad" className="form-control" onChange={(e) => setactividad(e.target.value)}>
+                    <option value=""></option>
+                    <option value="decuacion terreno">decuacion terreno</option>
+                    <option value="siembra y transplante">siembra y transplante</option>
+                    <option value="fertilizacion">fertilizacion</option>
+                </select>
+                <label htmlFor="fecha"><b>Fecha:</b></label>
+                <input type="date" className="form-control my-3" value={fecha} onChange={(e) => setfecha(e.target.value)} />
+                <label htmlFor="tiempo"><b>Tiempo (min):</b></label>
+                <input type="number" className="form-control" value={tiempo} onChange={(e) => settiempo(e.target.value)} />
                 <button type="submit" className="btn btn-primary m-3">Enviar</button>
             </form>
-            <div className="container">
-                <h2>Registro diario de campo</h2>
+            <div className="container p-3">
+                <h3 className="text-center">Registro diario de campo</h3>
                 <table className="table border">
-                    <thead className="fs-bold fs-4 border">
+                    <thead className="fs-bold fs-4 border table-success ">
                         <tr>
                             <td>Actividad</td>
                             <td>Fecha</td>
@@ -84,8 +86,8 @@ const CampoSelect = ({ setTotalManoObra }) => {
                     <tfoot>
                         <tr>
                             <td colSpan={2}>Total:</td>
-                            <td><strong>{suma}</strong></td>
-                            <td><strong>{formatomoneda(actividades.reduce((acc, acti) => acc + acti.manoobraactividad, 0))}</strong></td>
+                            <td ><strong>{suma}</strong></td>
+                            <td className="bg-warning"><strong>{formatomoneda(actividades.reduce((acc, acti) => acc + acti.manoobraactividad, 0))}</strong></td>
                         </tr>
                     </tfoot>
                 </table>

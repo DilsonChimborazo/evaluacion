@@ -37,24 +37,26 @@ const Insumos = ({ setTotalCostos }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={recibirDatos}>
-                <label htmlFor="actividad"><b>Actividad:</b>
-                    <select value={actividad} className="form-control" onChange={(e) => setactividad(e.target.value)}>
-                        <option value=""></option>
-                        <option value="decuacion terreno">decuacion terreno</option>
-                        <option value="siembra y transplante">siembra y transplante</option>
-                        <option value="fertilizacion">fertilizacion</option>
-                    </select>
-                    <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setinsumo(e.target.value)} />
-                    <input type="number" className="form-control" value={costo} onChange={(e) => setcosto(e.target.value)} />
-                </label><br />
+        <div className="d-flex mt-5 bg-success text-white rounded-5">
+            <form onSubmit={recibirDatos} className="shadow-lg p-5">
+                <h3 className="text-center">Registro de Egresos insumos</h3>
+                <label htmlFor="actividad"><b>Actividad:</b></label>
+                <select value={actividad} className="form-control" onChange={(e) => setactividad(e.target.value)}>
+                    <option value=""></option>
+                    <option value="decuacion terreno">decuacion terreno</option>
+                    <option value="siembra y transplante">siembra y transplante</option>
+                    <option value="fertilizacion">fertilizacion</option>
+                </select>
+                <label htmlFor="insumos"><b>Insumos:</b></label>
+                <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setinsumo(e.target.value)} />
+                <label htmlFor="costo"><b>Costo:</b></label>
+                <input type="number" className="form-control" value={costo} onChange={(e) => setcosto(e.target.value)} />
                 <button type="submit" className="btn btn-primary m-3">Enviar</button>
             </form>
-            <div className="container">
-                <h2>Egresos Insumos</h2>
-                <table className="table border">
-                    <thead className="fs-bold fs-4 border">
+            <div className="container p-3">
+                <h3 className="text-center">Egresos Insumos</h3>
+                <table className="table border shadow-lg">
+                    <thead className="fs-bold fs-4 table-primary">
                         <tr>
                             <td>Actividad</td>
                             <td>Insumos</td>
@@ -73,7 +75,7 @@ const Insumos = ({ setTotalCostos }) => {
                     <tfoot>
                         <tr>
                             <td colSpan={2}>Total:</td>
-                            <td><strong>{formatomoneda(suma)}</strong></td>
+                            <td className="bg-warning"><strong>{formatomoneda(suma)}</strong></td>
                         </tr>
                     </tfoot>
                 </table>

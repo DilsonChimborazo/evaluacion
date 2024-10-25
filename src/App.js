@@ -17,27 +17,43 @@ const App = () => {
     }
 
     return (
-        <div className="container mt-4">
-            <h1>Registro de Actividades</h1>
+        <div className="container p-3">
             <CampoSelect setTotalManoObra={setTotalManoObra} />
             <Insumos setTotalCostos={setTotalCostos} />
-            <h2>Totales</h2>
-            <table className="table">
-                <tbody>
-                    <tr>
-                        <td>Total Mano de Obra:</td>
-                        <td><strong>{formatomoneda(totalManoObra)}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Total Egresos Insumos:</td>
-                        <td><strong>{formatomoneda(totalCostos)}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Total General:</td>
-                        <td><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className="container my-5 rounded-5 p-3">
+                <table className="table">
+                    <thead className="fs-bold fs-4 border table-success rounded-5">
+                        <tr>
+                            <th>Nombre tabla</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Mano de Obra:</td>
+                            <td><strong>{formatomoneda(totalManoObra)}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Total Egresos Insumos:</td>
+                            <td><strong>{formatomoneda(totalCostos)}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>total Egresos:</td>
+                            <td className="bg-danger"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>total Ingresos:</td>
+                            <td className="bg-warning"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan={1}>Rentabilidad costo valor</td>
+                            <td className="bg-success"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     )
 }
