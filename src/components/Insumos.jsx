@@ -38,7 +38,7 @@ const Insumos = ({ setTotalCostos }) => {
 
     return (
         <div className="d-flex mt-5 bg-success text-white rounded-5">
-            <form onSubmit={recibirDatos} className="shadow-lg p-5">
+            <form onSubmit={recibirDatos} className="p-5">
                 <h3 className="text-center">Registro de Egresos insumos</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
                 <select value={actividad} className="form-control" onChange={(e) => setactividad(e.target.value)}>

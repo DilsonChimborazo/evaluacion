@@ -47,7 +47,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
 
     return (
         <div className="d-flex bg-success text-white rounded-5">
-            <form onSubmit={recibirDatos} className="shadow-lg p-5">
+            <form onSubmit={recibirDatos} className="p-5">
                 <h3 className="text-center">Registro de mano de obra</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
                 <select value={actividad} id="actividad" className="form-control" onChange={(e) => setactividad(e.target.value)}>
@@ -63,7 +63,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
                 <button type="submit" className="btn btn-primary m-3">Enviar</button>
             </form>
             <div className="container p-3">
-                <h3 className="text-center">Registro diario de campo</h3>
+                <h3 className="text-center">Egresos mano de obra</h3>
                 <table className="table border">
                     <thead className="fs-bold fs-4 border table-success ">
                         <tr>

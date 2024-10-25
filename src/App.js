@@ -30,26 +30,26 @@ const App = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Total Mano de Obra:</td>
-                            <td><strong>{formatomoneda(totalManoObra)}</strong></td>
+                            <td className="p-3">Total Mano de Obra:</td>
+                            <td className="p-3"><strong>{formatomoneda(totalManoObra)}</strong></td>
                         </tr>
                         <tr>
-                            <td>Total Egresos Insumos:</td>
-                            <td><strong>{formatomoneda(totalCostos)}</strong></td>
+                            <td className="p-3">Total Egresos Insumos:</td>
+                            <td className="p-3"><strong>{formatomoneda(totalCostos)}</strong></td>
                         </tr>
                         <tr>
-                            <td>total Egresos:</td>
-                            <td className="bg-danger"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                            <td className="p-3">total Egresos:</td>
+                            <td className="bg-danger p-3"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
                         </tr>
                         <tr>
-                            <td>total Ingresos:</td>
-                            <td className="bg-warning"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                            <td className="p-3">total Ingresos:</td>
+                            <td className="bg-warning p-3"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colSpan={1}>Rentabilidad costo valor</td>
-                            <td className="bg-success"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
+                            <td className="p-3" colSpan={1}>Rentabilidad costo valor</td>
+                            <td className="bg-success p-3"><strong>{formatomoneda(totalManoObra + totalCostos)}</strong></td>
                         </tr>
                     </tfoot>
                 </table>
