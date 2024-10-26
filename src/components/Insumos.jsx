@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Insumos.css'
 
 const Insumos = ({ setTotalCostos }) => {
     const [actividad, setActividad] = useState('');
@@ -8,7 +9,7 @@ const Insumos = ({ setTotalCostos }) => {
     const [actividades, setActividades] = useState([]);
     const [suma, setSuma] = useState(0);
 
-    // Cargar datos desde localStorage al iniciar
+
     useEffect(() => {
         const actividadesGuardadas = JSON.parse(localStorage.getItem('actividades')) || [];
         const sumaGuardada = JSON.parse(localStorage.getItem('sumaInsumos')) || 0;
@@ -18,7 +19,6 @@ const Insumos = ({ setTotalCostos }) => {
         setTotalCostos(prevTotal => prevTotal + sumaGuardada);
     }, [setTotalCostos]);
 
-    // Guardar actividades y suma en localStorage cada vez que cambian
     useEffect(() => {
         localStorage.setItem('actividades', JSON.stringify(actividades));
         localStorage.setItem('sumaInsumos', JSON.stringify(suma));
@@ -33,7 +33,6 @@ const Insumos = ({ setTotalCostos }) => {
         setSuma(prevSuma => prevSuma + nuevoCosto);
         setTotalCostos(prevTotal => prevTotal + nuevoCosto);
 
-        // Limpiar campos después de guardar
         setCosto(0);
         setInsumo('');
         setActividad('');
@@ -54,21 +53,28 @@ const Insumos = ({ setTotalCostos }) => {
     };
 
     return (
-        <div className="d-flex mt-5 bg-info text-white rounded-5">
+        <div className="Insumos d-flex mt-5 text-white rounded-4">
             <form onSubmit={recibirDatos} className="p-5">
                 <h3 className="text-center">Registro de Egresos Insumos</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
                 <select value={actividad} className="form-control" onChange={(e) => setActividad(e.target.value)}>
-                    <option value=""></option>
-                    <option value="decuacion terreno">Deacuación Terreno</option>
-                    <option value="siembra y transplante">Siembra y Transplante</option>
-                    <option value="fertilizacion">Fertilización</option>
+                <option value=""></option>
+                    <option value="Adecuacion terreno">Adecuación terreno</option>
+                    <option value="Siembra y transplante">Siembra y transplante</option>
+                    <option value="Fertilización y enmiendas">Fertilización y enmiendas</option>
+                    <option value="control de arvenses">control de arvenses</option>
+                    <option value="Control fitosanitario">Control fitosanitario</option>
+                    <option value="Riego">Riego</option>
+                    <option value="Labores Agroculturales">Labores Agroculturales</option>
+                    <option value="Cosecha y pos cosecha">Cosecha y pos cosecha</option>
                 </select>
                 <label htmlFor="insumos"><b>Insumos:</b></label>
                 <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setInsumo(e.target.value)} />
                 <label htmlFor="costo"><b>Costo:</b></label>
                 <input type="number" className="form-control" value={costo} onChange={(e) => setCosto(e.target.value)} />
-                <button type="submit" className="btn btn-primary m-3">Enviar</button>
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary m-3">Enviar</button>
+                </div>
             </form>
             <div className="container p-3">
                 <h3 className="text-center">Egresos Insumos</h3>
