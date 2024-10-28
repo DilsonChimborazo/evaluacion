@@ -38,7 +38,7 @@ const Ventas = ({ setTotalIngresos }) => {
             <form onSubmit={recibirDatos} className="p-5">
                 <h3 className="text-center">Registro de Ventas</h3>
                 <label htmlFor="producto"><b>Producto:</b></label>
-                <select value={producto} className="form-control" onChange={(e) => setProducto(e.target.value)}>
+                <select value={producto} id="producto" className="form-control" onChange={(e) => setProducto(e.target.value)}>
                     <option value=""></option>
                     <option value="Lechuga">Lechuga</option>
                     <option value="Acelga">Acelga</option>
@@ -50,9 +50,9 @@ const Ventas = ({ setTotalIngresos }) => {
                     <option value="Cilantro">Cilantro</option>
                 </select>
                 <label htmlFor="descripcion"><b>Descripción:</b></label>
-                <input type="text" className="form-control my-3" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+                <input type="text" className="form-control my-3" id="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
                 <label htmlFor="costo"><b>Costo:</b></label>
-                <input type="number" className="form-control" value={costo} onChange={(e) => setCosto(e.target.value)} />
+                <input type="number" className="form-control" id="costo" value={costo} onChange={(e) => setCosto(e.target.value)} />
                 <div className="text-center">
                     <button type="submit" className="btn btn-primary m-3">Enviar</button>
                 </div>

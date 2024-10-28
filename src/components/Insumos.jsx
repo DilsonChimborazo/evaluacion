@@ -54,10 +54,10 @@ const Insumos = ({ setTotalCostos }) => {
 
     return (
         <div className="Insumos d-flex mt-5 text-white rounded-4">
-            <form onSubmit={recibirDatos} className="p-5">
+            <form onSubmit={recibirDatos} className="p-3">
                 <h3 className="text-center">Registro de Egresos Insumos</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
-                <select value={actividad} className="form-control" onChange={(e) => setActividad(e.target.value)}>
+                <select value={actividad} className="form-control" id="actividad" onChange={(e) => setActividad(e.target.value)}>
                 <option value=""></option>
                     <option value="Adecuacion terreno">Adecuación terreno</option>
                     <option value="Siembra y transplante">Siembra y transplante</option>
@@ -69,9 +69,9 @@ const Insumos = ({ setTotalCostos }) => {
                     <option value="Cosecha y pos cosecha">Cosecha y pos cosecha</option>
                 </select>
                 <label htmlFor="insumos"><b>Insumos:</b></label>
-                <input type="text" className="form-control my-3" value={insumo} onChange={(e) => setInsumo(e.target.value)} />
+                <input type="text" className="form-control my-3" id="insumos" value={insumo} onChange={(e) => setInsumo(e.target.value)} />
                 <label htmlFor="costo"><b>Costo:</b></label>
-                <input type="number" className="form-control" value={costo} onChange={(e) => setCosto(e.target.value)} />
+                <input type="number" className="form-control" id="costo" value={costo} onChange={(e) => setCosto(e.target.value)} />
                 <div className="text-center">
                     <button type="submit" className="btn btn-primary m-3">Enviar</button>
                 </div>

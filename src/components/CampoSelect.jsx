@@ -52,7 +52,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
 
     return (
         <div className="Campo d-flex text-white rounded-4">
-            <form onSubmit={recibirDatos} className="p-5">
+            <form onSubmit={recibirDatos} className="p-3">
                 <h3 className="text-center">Registro de mano de obra</h3>
                 <label htmlFor="actividad"><b>Actividad:</b></label>
                 <select value={actividad} id="actividad" className="form-control" onChange={(e) => setactividad(e.target.value)}>
@@ -67,9 +67,9 @@ const CampoSelect = ({ setTotalManoObra }) => {
                     <option value="Cosecha y pos cosecha">Cosecha y pos cosecha</option>
                 </select>
                 <label htmlFor="fecha"><b>Fecha:</b></label>
-                <input type="date" className="form-control my-3" value={fecha} onChange={(e) => setfecha(e.target.value)} />
+                <input type="date" className="form-control my-3" id="fecha"  value={fecha} onChange={(e) => setfecha(e.target.value)} />
                 <label htmlFor="tiempo"><b>Tiempo (min):</b></label>
-                <input type="number" className="form-control" value={tiempo} onChange={(e) => settiempo(e.target.value)} />
+                <input type="number" className="form-control" id="tiempo" value={tiempo} onChange={(e) => settiempo(e.target.value)} />
                 <div className="text-center">
                     <button type="submit" className="btn btn-primary m-3">Enviar</button>
                 </div>
