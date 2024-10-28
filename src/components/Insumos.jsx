@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from "react"
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../Insumos.css'
 
 const Insumos = ({ setTotalCostos }) => {
-    const [actividad, setActividad] = useState('');
-    const [insumo, setInsumo] = useState('');
-    const [costo, setCosto] = useState(0);
-    const [actividades, setActividades] = useState([]);
-    const [suma, setSuma] = useState(0);
+    const [actividad, setActividad] = useState('')
+    const [insumo, setInsumo] = useState('')
+    const [costo, setCosto] = useState(0)
+    const [actividades, setActividades] = useState([])
+    const [suma, setSuma] = useState(0)
 
 
     useEffect(() => {
-        const actividadesGuardadas = JSON.parse(localStorage.getItem('actividades')) || [];
-        const sumaGuardada = JSON.parse(localStorage.getItem('sumaInsumos')) || 0;
+        const actividadesGuardadas = JSON.parse(localStorage.getItem('actividades')) || []
+        const sumaGuardada = JSON.parse(localStorage.getItem('sumaInsumos')) || 0
 
-        setActividades(actividadesGuardadas);
-        setSuma(sumaGuardada);
-        setTotalCostos(prevTotal => prevTotal + sumaGuardada);
-    }, [setTotalCostos]);
+        setActividades(actividadesGuardadas)
+        setSuma(sumaGuardada)
+        setTotalCostos(prevTotal => prevTotal + sumaGuardada)
+    }, [setTotalCostos])
 
     useEffect(() => {
-        localStorage.setItem('actividades', JSON.stringify(actividades));
-        localStorage.setItem('sumaInsumos', JSON.stringify(suma));
-    }, [actividades, suma]);
+        localStorage.setItem('actividades', JSON.stringify(actividades))
+        localStorage.setItem('sumaInsumos', JSON.stringify(suma))
+    }, [actividades, suma])
 
     const recibirDatos = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const nuevoCosto = parseInt(costo) || 0;
-        const nuevaActividad = { actividad, insumo, costo: nuevoCosto };
+        const nuevaActividad = { actividad, insumo, costo: nuevoCosto }
 
-        setActividades([...actividades, nuevaActividad]);
-        setSuma(prevSuma => prevSuma + nuevoCosto);
-        setTotalCostos(prevTotal => prevTotal + nuevoCosto);
+        setActividades([...actividades, nuevaActividad])
+        setSuma(prevSuma => prevSuma + nuevoCosto)
+        setTotalCostos(prevTotal => prevTotal + nuevoCosto)
 
-        setCosto(0);
-        setInsumo('');
-        setActividad('');
+        setCosto(0)
+        setInsumo('')
+        setActividad('')
 
-        console.log('Actividad:', actividad);
-        console.log('Insumo:', insumo);
-        console.log('Costo:', nuevoCosto);
-        console.log('Suma total:', suma + nuevoCosto);
-    };
+        console.log('Actividad:', actividad)
+        console.log('Insumo:', insumo)
+        console.log('Costo:', nuevoCosto)
+        console.log('Suma total:', suma + nuevoCosto)
+    }
 
     const formatomoneda = (value) => {
         return new Intl.NumberFormat('es-CO', {
@@ -50,7 +50,7 @@ const Insumos = ({ setTotalCostos }) => {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0
         }).format(value);
-    };
+    }
 
     return (
         <div className="Insumos d-flex mt-5 text-white rounded-4">
@@ -104,7 +104,7 @@ const Insumos = ({ setTotalCostos }) => {
                 </table>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Insumos;
+export default Insumos

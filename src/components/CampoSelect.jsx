@@ -105,7 +105,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
                 </table>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default CampoSelect

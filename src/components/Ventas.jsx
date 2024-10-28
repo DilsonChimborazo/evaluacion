@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react"
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../Insumos.css'
 
 const Ventas = ({ setTotalIngresos }) => {
-    const [producto, setProducto] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [costo, setCosto] = useState(0);
-    const [productos, setProductos] = useState([]);
-    const [suma, setSuma] = useState(0);
+    const [producto, setProducto] = useState('')
+    const [descripcion, setDescripcion] = useState('')
+    const [costo, setCosto] = useState(0)
+    const [productos, setProductos] = useState([])
+    const [suma, setSuma] = useState(0)
 
     const recibirDatos = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const Ventas = ({ setTotalIngresos }) => {
         setCosto(0);
         setDescripcion('');
         setProducto('');
-    };
+    }
 
     const formatomoneda = (value) => {
         return new Intl.NumberFormat('es-CO', {
@@ -31,7 +31,7 @@ const Ventas = ({ setTotalIngresos }) => {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0
         }).format(value);
-    };
+    }
 
     return (
         <div className="Ventas d-flex mt-5 text-white rounded-4">
@@ -85,7 +85,7 @@ const Ventas = ({ setTotalIngresos }) => {
                 </table>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default Ventas;
