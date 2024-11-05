@@ -5,14 +5,14 @@ import '../Insumos.css'
 const CampoSelect = ({ setTotalManoObra }) => {
     const [actividad, setactividad] = useState('')
     const [fecha, setfecha] = useState('')
-    const [tiempo, settiempo] = useState(0)
+    const [tiempo, settiempo] = useState('')
     const [actividades, setactividades] = useState([])
     const [suma, setSuma] = useState(0)
 
-    useEffect(() => {const storedActividades = JSON.parse(localStorage.getItem("actividades")) || []
-        setactividades(storedActividades)
+    useEffect(() => {const ActividadeAlmacenada = JSON.parse(localStorage.getItem("actividades")) || []
+        setactividades(ActividadeAlmacenada)
 
-        const totalInicial = storedActividades.reduce((acc, act) => acc + act.manoobraactividad, 0)
+        const totalInicial = ActividadeAlmacenada.reduce((acc, act) => acc + act.manoobraactividad, 0)
         setTotalManoObra(totalInicial)
     }, [setTotalManoObra])
 
@@ -23,7 +23,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
     const recibirDatos = (e) => {
         e.preventDefault()
         const dia = new Date(fecha).getUTCDate()
-        const nuevoti = parseInt(tiempo) || 0
+        const nuevoti = parseInt(tiempo) 
         const nuevotiempo = suma + nuevoti
 
         const horas = tiempo / 60
@@ -34,7 +34,7 @@ const CampoSelect = ({ setTotalManoObra }) => {
 
         setactividades([...actividades, nuevaactividad])
         setSuma(nuevotiempo)
-        setTotalManoObra(prevTotal => prevTotal + manoobraactividad)
+        setTotalManoObra(preTotal => preTotal + manoobraactividad)
         
         settiempo(0)
         setfecha('')
@@ -86,8 +86,8 @@ const CampoSelect = ({ setTotalManoObra }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {actividades.map((acti, index) => (
-                            <tr key={index}>
+                        {actividades.map((acti, llave) => (
+                            <tr key={llave}>
                                 <td>{acti.actividad}</td>
                                 <td>{acti.dia}</td>
                                 <td>{acti.tiempo}</td>

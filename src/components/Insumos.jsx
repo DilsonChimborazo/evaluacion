@@ -87,8 +87,8 @@ const Insumos = ({ setTotalCostos }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {actividades.map((acti, index) => (
-                            <tr key={index}>
+                        {actividades.map((acti, llave) => (
+                            <tr key={llave}>
                                 <td>{acti.actividad}</td>
                                 <td>{acti.insumo}</td>
                                 <td>{formatomoneda(acti.costo)}</td>
